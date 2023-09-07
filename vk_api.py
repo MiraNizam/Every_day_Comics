@@ -1,6 +1,9 @@
-import os, os.path
+import os
+import os.path
+
 import requests
 from dotenv import load_dotenv
+
 from downloader import download_image
 from xkcd_comics import get_comics
 
@@ -82,4 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

@@ -1,5 +1,7 @@
-import requests
 import random
+
+import requests
+
 
 def get_comics():
     """ Func to receive a random comics. """
