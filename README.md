@@ -1,4 +1,4 @@
-#Every_day_Comics
+# Every_day_Comics
 
 VK public group to post Randall Munroe Comics. 
 
@@ -35,17 +35,17 @@ env\Scripts\activate (for Windows)
 ```
 pip install -r requirements.txt
 ```
-5. Create empty file .env for your private data
+5. Create empty file **.env** for your private data
 
 6. Go to your [VK page](https://vk.com) and:
     - create a new group 
-    - create a new app (https://vk.com/apps?act=manage) *with standalone* type
+    - create a new app [manage_app](https://vk.com/apps?act=manage) *with standalone* type
     - add your **CLIENT_ID** in .env
-    - get key access using [Implicit Flow](https://vk.com/dev/implicit_flow_user) Вам потребуются следующие права: photos, groups, wall и offline.Убрать параметр redirect_uri
+    - get key access using [Implicit Flow](https://vk.com/dev/implicit_flow_user) You will need the following permissions: *photos*, *groups*, *wall* and *offline*. Remove the *redirect_uri* parameter
     - add your **VK_TOKEN** and **GROUP_ID** in .env
     - find actual VK version, now it 5.131 
     - add actual version as **VERSION** in .env
-    - get group[owner_id](https://regvk.com/id/)
+    - get group_owner_id: [ID](https://regvk.com/id/)
     - add your **GROUP_OWNER_ID** in .env
    
 ### How to run code 
