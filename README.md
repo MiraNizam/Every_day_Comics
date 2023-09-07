@@ -1,6 +1,6 @@
 # Every_day_Comics
 
-VK public group to post Randall Munroe Comics. 
+We will create VK public group to post Randall Munroe Comics. 
 
 ## Let's start:
 
