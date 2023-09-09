@@ -1,10 +1,10 @@
 import os.path
-from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import requests
 
-def download_image(url, folder="media"):
+
+def download_image(url, folder):
     """Function for downloading images.
     Args:
         url (str): Link to the image you want to download.
@@ -12,7 +12,6 @@ def download_image(url, folder="media"):
     returns:
         str: The path to the file where the picture is saved.
     """
-    Path(folder).mkdir(parents=True, exist_ok=True)
     filename = urlsplit(unquote(url)).path.split("/")[-1]
     picture_path = os.path.join(folder, filename)
     response = requests.get(url)
