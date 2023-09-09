@@ -2,7 +2,7 @@
 
 We will create VK public group to post Randall Munroe Comics. 
 
-## Let's start:
+## Let's start
 
 ### Prerequisites
 
