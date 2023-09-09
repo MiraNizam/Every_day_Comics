@@ -5,8 +5,8 @@ import requests
 
 def get_comics():
     """ Func to receive a random comics. """
-    the_last_comics_no = 2825
-    comics_no = random.randint(1, the_last_comics_no)
+    last_comics_num = 2825
+    comics_no = random.randint(1, last_comics_num)
     response = requests.get(f"https://xkcd.com/{comics_no}/info.0.json")
     response.raise_for_status()
     comics_description = response.json()
