@@ -9,11 +9,17 @@ from downloader import download_image
 from xkcd_comics import get_comics
 
 
+def check_response(response):
+    if "error" in response.text:
+        raise requests.HTTPError
+
+
 def get_image_server_address(access_token, version, group_id):
     payload = {"group_id": group_id, "access_token": access_token, "v": version}
     url = "https://api.vk.com/method/photos.getWallUploadServer"
     response = requests.get(url, payload)
     response.raise_for_status()
+    check_response(response)
     server_address = response.json()["response"]["upload_url"]
     return server_address
 
@@ -23,11 +29,12 @@ def load_image(server_address, image_path):
         url = server_address
         files = {'photo': file}
         response = requests.post(url, files=files)
-        response.raise_for_status()
-        image_location = response.json()
-        server = image_location["server"]
-        photo = image_location["photo"]
-        image_hash = image_location["hash"]
+    response.raise_for_status()
+    check_response(response)
+    image_location = response.json()
+    server = image_location["server"]
+    photo = image_location["photo"]
+    image_hash = image_location["hash"]
     return server, photo, image_hash
 
 
@@ -44,6 +51,7 @@ def save_image(server, photo, image_hash, transcript, access_token, version, gro
     url = "https://api.vk.com/method/photos.saveWallPhoto"
     response = requests.post(url, params=payload)
     response.raise_for_status()
+    check_response(response)
     image_description = response.json()['response'][0]
     owner_id = image_description["owner_id"]
     media_id = image_description["id"]
@@ -63,6 +71,7 @@ def publish_image(owner_id, media_id, text, access_token, version, group_owner_i
     url = "https://api.vk.com/method/wall.post"
     response = requests.post(url, params=payload)
     response.raise_for_status()
+    check_response(response)
     return response.json()
 
 
@@ -82,11 +91,10 @@ def main():
         server, photo, hash_image = load_image(server_address, image_path)
         owner_id, media_id, text = save_image(server, photo, hash_image, transcript, access_token, version, group_id)
         publish_image(owner_id, media_id, text, access_token, version, group_owner_id)
+    except requests.exceptions.HTTPError as error:
+        print(f"Exception occurred. {error} \n")
     finally:
         os.remove(image_path)
-
-
-
 
 
 if __name__ == "__main__":
