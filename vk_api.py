@@ -72,10 +72,10 @@ def remove_file(picture_path):
 
 def main():
     load_dotenv()
-    access_token = os.getenv("VK_TOKEN")
-    version = os.getenv("VERSION")
-    group_id = os.getenv("GROUP_ID")
-    group_owner_id = os.getenv("GROUP_OWNER_ID")
+    access_token = os.environ["VK_TOKEN"]
+    version = os.getenv("VERSION", default="5.131")
+    group_id = os.environ["GROUP_ID"]
+    group_owner_id = os.environ["GROUP_OWNER_ID"]
     folder = "media"
 
     picture_url, transcript = get_comics()
