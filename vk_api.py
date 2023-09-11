@@ -80,12 +80,17 @@ def main():
 
     picture_url, transcript = get_comics()
     Path(folder).mkdir(parents=True, exist_ok=True)
-    image_path = download_image(picture_url, folder)
-    server_address = get_image_server_address(access_token, version, group_id)
-    server, photo, hash_image = load_image(server_address, image_path)
-    owner_id, media_id, text = save_image(server, photo, hash_image, transcript, access_token, version, group_id)
-    publish_image(owner_id, media_id, text, access_token, version, group_owner_id)
-    remove_file(image_path)
+    try:
+        image_path = download_image(picture_url, folder)
+        server_address = get_image_server_address(access_token, version, group_id)
+        server, photo, hash_image = load_image(server_address, image_path)
+        owner_id, media_id, text = save_image(server, photo, hash_image, transcript, access_token, version, group_id)
+        publish_image(owner_id, media_id, text, access_token, version, group_owner_id)
+    finally:
+        remove_file(image_path)
+
+
+
 
 
 if __name__ == "__main__":
