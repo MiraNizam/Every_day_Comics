@@ -66,10 +66,6 @@ def publish_image(owner_id, media_id, text, access_token, version, group_owner_i
     return response.json()
 
 
-def remove_file(picture_path):
-    os.remove(picture_path)
-
-
 def main():
     load_dotenv()
     access_token = os.environ["VK_TOKEN"]
@@ -87,7 +83,7 @@ def main():
         owner_id, media_id, text = save_image(server, photo, hash_image, transcript, access_token, version, group_id)
         publish_image(owner_id, media_id, text, access_token, version, group_owner_id)
     finally:
-        remove_file(image_path)
+        os.remove(image_path)
 
 
 
