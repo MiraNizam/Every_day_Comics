@@ -10,8 +10,8 @@ from xkcd_comics import get_comics
 
 
 def check_response(response):
-    if "error" in response.text:
-        raise requests.HTTPError
+    if "error" in response.json():
+        raise requests.HTTPError(response.json()['error']['error_msg'])
 
 
 def get_image_server_address(access_token, version, group_id):
