@@ -53,4 +53,4 @@ pip install -r requirements.txt
 ```commandline
 python vk_api.py
 ```
-Go to the group and look at the new post. 
+Go to the group and look at the new post.
