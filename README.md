@@ -42,11 +42,10 @@ pip install -r requirements.txt
     - create a new app [manage_app](https://vk.com/apps?act=manage) *with standalone* type
     - add your **CLIENT_ID** in .env
     - get key access using [Implicit Flow](https://vk.com/dev/implicit_flow_user) You will need the following permissions: *photos*, *groups*, *wall* and *offline*. Remove the *redirect_uri* parameter
-    - add your **VK_TOKEN** and **GROUP_ID** in .env
+    - add your **VK_TOKEN** and **GROUP_ID**([ID](https://regvk.com/id/)) in .env
     - find actual VK version, now it 5.131 
     - add actual version as **VERSION** in .env
-    - get group_owner_id: [ID](https://regvk.com/id/)
-    - add your **GROUP_OWNER_ID** in .env
+
    
 ### How to run code 
 

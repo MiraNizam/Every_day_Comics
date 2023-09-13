@@ -59,9 +59,9 @@ def save_image(server, photo, image_hash, transcript, access_token, version, gro
     return owner_id, media_id, text
 
 
-def publish_image(owner_id, media_id, text, access_token, version, group_owner_id):
+def publish_image(owner_id, media_id, text, access_token, version, group_id):
     payload = {
-        "owner_id": f"-{group_owner_id}",
+        "owner_id": f"-{group_id}",
         "from_group": 1,
         "attachments": f"photo{owner_id}_{media_id}",
         "message": text,
@@ -81,7 +81,6 @@ def main():
     access_token = os.environ["VK_TOKEN"]
     version = os.getenv("VERSION", default="5.131")
     group_id = os.environ["GROUP_ID"]
-    group_owner_id = os.environ["GROUP_OWNER_ID"]
     folder = "media"
 
     picture_url, transcript = get_comics()
@@ -91,7 +90,7 @@ def main():
         server_address = get_image_server_address(access_token, version, group_id)
         server, photo, hash_image = load_image(server_address, image_path)
         owner_id, media_id, text = save_image(server, photo, hash_image, transcript, access_token, version, group_id)
-        publish_image(owner_id, media_id, text, access_token, version, group_owner_id)
+        publish_image(owner_id, media_id, text, access_token, version, group_id)
     except requests.exceptions.HTTPError as error:
         print(f"Exception occurred. {error} \n")
     finally:
