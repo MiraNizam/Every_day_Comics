@@ -27,9 +27,8 @@ def get_image_server_address(access_token, version, group_id):
 
 def load_image(upload_url, image_path):
     with open(image_path, 'rb') as file:
-        url = upload_url
         files = {'photo': file}
-        response = requests.post(url, files=files)
+        response = requests.post(upload_url, files=files)
     response.raise_for_status()
     image_location = response.json()
     check_response(image_location)
