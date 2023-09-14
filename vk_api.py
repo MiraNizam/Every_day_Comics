@@ -9,9 +9,9 @@ from downloader import download_image
 from xkcd_comics import get_comics
 
 
-def check_response(response_json):
-    if "error" in response_json:
-        raise requests.HTTPError(response_json["error"]["error_msg"])
+def check_response(response):
+    if "error" in response:
+        raise requests.HTTPError(response["error"]["error_msg"])
 
 
 def get_image_server_address(access_token, version, group_id):
@@ -71,9 +71,9 @@ def publish_image(owner_id, media_id, text, access_token, version, group_id):
     url = "https://api.vk.com/method/wall.post"
     response = requests.post(url, params=payload)
     response.raise_for_status()
-    response_json = response.json()
-    check_response(response_json)
-    return response_json
+    response = response.json()
+    check_response(response)
+    return response
 
 
 def main():
